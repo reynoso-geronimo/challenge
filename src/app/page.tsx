@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Minus, Plus } from "lucide-react";
 import { useEffect, useState } from "react";
-import { fetchCounterValue, updateCounterValue } from "./action";
+import { fetchCounterValue, updateCounterValue } from "./actions";
 import { motion, AnimatePresence } from "motion/react";
 
 export default function Home() {
