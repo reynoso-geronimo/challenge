@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "motion/react";
 export default function Home() {
   const [counter, setCounter] = useState(0);
   const [direction, setDirection] = useState(0); // 1 for up, -1 for down
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const getCounterValue = async () => {
@@ -18,17 +19,27 @@ export default function Home() {
   }, []);
 
   const increment = async () => {
-    setDirection(1);
+    setIsLoading(true);
     const newValue = counter + 1;
-    setCounter(newValue);
-    await updateCounterValue(newValue);
+    const success = await updateCounterValue(newValue);
+    
+    if (success) {
+      setDirection(1);
+      setCounter(newValue);
+    }
+    setIsLoading(false);
   };
 
   const decrement = async () => {
-    setDirection(-1);
+    setIsLoading(true);
     const newValue = counter - 1;
-    setCounter(newValue);
-    await updateCounterValue(newValue);
+    const success = await updateCounterValue(newValue);
+    
+    if (success) {
+      setDirection(-1);
+      setCounter(newValue);
+    }
+    setIsLoading(false);
   };
 
   const variants = {
@@ -55,7 +66,7 @@ export default function Home() {
     <main className="container py-12 space-y-12">
       <h1 className="font-bold text-center text-4xl">WeSpeak Challenge</h1>
       <div className="flex items-center justify-center gap-4 w-full">
-        <Button onClick={decrement}>
+        <Button onClick={decrement} disabled={isLoading}>
           <Minus />
         </Button>
         <div className="relative h-10 w-12 flex items-center justify-center overflow-hidden">
@@ -77,7 +88,7 @@ export default function Home() {
             </motion.span>
           </AnimatePresence>
         </div>
-        <Button onClick={increment}>
+        <Button onClick={increment} disabled={isLoading}>
           <Plus />
         </Button>
       </div>

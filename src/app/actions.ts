@@ -9,9 +9,15 @@ export async function fetchCounterValue(): Promise<number> {
   return result[0]?.value ?? 0;
 }
 
-export async function updateCounterValue(newValue: number): Promise<void> {
-  await db
-    .insert(counter)
-    .values({ id: 1, value: newValue })
-    .onDuplicateKeyUpdate({ set: { value: newValue } });
+export async function updateCounterValue(newValue: number): Promise<boolean> {
+  try {
+    await db
+      .insert(counter)
+      .values({ id: 1, value: newValue })
+      .onDuplicateKeyUpdate({ set: { value: newValue } });
+    return true; 
+  } catch (error) {
+    console.error("Error updating counter:", error);
+    return false; 
+  }
 }
