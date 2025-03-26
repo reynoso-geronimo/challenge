@@ -1,3 +1,5 @@
+Se utilizo una base de datos MySql local
+
 Configurar archivo Env con base de datos a usar  
 
 ej  
