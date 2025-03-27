@@ -14,7 +14,10 @@ export async function updateCounterValue(newValue: number): Promise<boolean> {
     await db
       .insert(counter)
       .values({ id: 1, value: newValue })
-      .onDuplicateKeyUpdate({ set: { value: newValue } });
+      .onConflictDoUpdate({
+        target: counter.id,
+        set: { value: newValue }
+      });
     return true; 
   } catch (error) {
     console.error("Error updating counter:", error);
