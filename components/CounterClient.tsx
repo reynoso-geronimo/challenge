@@ -5,10 +5,9 @@ import { updateCounterValue } from "../src/app/actions";
 
 interface CounterClientProps {
   value: number;
-  children: React.ReactNode;
 }
 
-export default function CounterClient({ value, children }: CounterClientProps) {
+export default function CounterClient({ value }: CounterClientProps) {
   const updateCounter = async (amount: number) => {
     const newValue = value + amount;
 
@@ -20,7 +19,7 @@ export default function CounterClient({ value, children }: CounterClientProps) {
       <Button onClick={() => updateCounter(-1)} size={"icon"}>
         <Minus />
       </Button>
-      {children}
+
       <Button onClick={() => updateCounter(1)} size={"icon"}>
         <Plus />
       </Button>

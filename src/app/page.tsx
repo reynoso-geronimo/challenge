@@ -5,12 +5,12 @@ export default async function Home() {
   return (
     <main className="container py-12 space-y-12">
       <h1 className="font-bold text-center text-4xl">WeSpeak Challenge</h1>
-
-      <CounterClient value={value}>
+      <div className="flex flex-col items-center justify-center gap-4 w-full">
+        <CounterClient value={value} />
         <div className="relative h-10 w-12 flex items-center justify-center">
           <span className="text-2xl font-bold">{value}</span>
         </div>
-      </CounterClient>
+      </div>
     </main>
   );
 }
