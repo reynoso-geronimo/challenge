@@ -22,7 +22,7 @@ export default function Home() {
     setIsLoading(true);
     const newValue = counter + 1;
     const success = await updateCounterValue(newValue);
-    
+
     if (success) {
       setDirection(1);
       setCounter(newValue);
@@ -34,7 +34,7 @@ export default function Home() {
     setIsLoading(true);
     const newValue = counter - 1;
     const success = await updateCounterValue(newValue);
-    
+
     if (success) {
       setDirection(-1);
       setCounter(newValue);
@@ -43,11 +43,6 @@ export default function Home() {
   };
 
   const variants = {
-    initial: () => ({
-      y: 0,
-      opacity: 0,
-    }),
-
     enter: (direction: number) => ({
       y: direction > 0 ? 20 : -20,
       opacity: 0,
@@ -75,7 +70,7 @@ export default function Home() {
               key={counter}
               custom={direction}
               variants={variants}
-              initial="initial"
+              initial="enter"
               animate="center"
               exit="exit"
               transition={{
