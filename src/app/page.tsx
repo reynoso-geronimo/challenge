@@ -2,7 +2,6 @@ import CounterClient from "@/components/CounterClient";
 import { fetchCounterValue } from "./actions";
 
 export default async function Home() {
-  // Obtener el valor inicial del contador desde el servidor
   const initialValue = await fetchCounterValue();
 
   return (
